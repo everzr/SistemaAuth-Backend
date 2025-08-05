@@ -14,12 +14,14 @@ app.use(express.json());
 
 //Referencias a las rutas
 import proofRoutes from "./routes/proofRoutes.js";
+import faceRoutes from "./routes/faceRoutes.js";
 
 app.get('/', (req, res) => {
   res.send('Servidor funcionando');
 });
 
 app.use("/api/proof" , proofRoutes)
+app.use("/api/face", faceRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor backend en http://localhost:${PORT}`);
