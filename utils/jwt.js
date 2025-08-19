@@ -6,7 +6,7 @@ export function signUserJwt(user) {
   return jwt.sign(
     { sub: user.id, name: user.name, email: user.email, avatar: user.avatar },
     process.env.JWT_SECRET,
-    { expiresIn: "7d" }
+    { expiresIn: "1m" }
   );
 }
 

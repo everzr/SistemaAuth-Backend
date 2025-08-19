@@ -32,7 +32,7 @@ app.use(passport.initialize());
 
 // --- Referencias a las rutas existentes (se mantienen) ---
 import proofRoutes from "./routes/proofRoutes.js";
-import faceRoutes from "./routes/faceRoutes.js";
+import loginRoutes from "./routes/loginRoutes.js";
 
 // --- Rutas OAuth (nuevas) ---
 import authRouter from "./routes/auth.js";
@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
 
 // --- Rutas existentes (se mantienen) ---
 app.use("/api/proof", proofRoutes);
-app.use("/api/face", faceRoutes);
+app.use("/api/login", loginRoutes);
 
 // --- Endpoint protegido de ejemplo (nuevo) ---
 import { requireAuth } from "./utils/jwt.js";
