@@ -1,7 +1,7 @@
 // backend/middlewares/requireSecret.js
 import jwt from "jsonwebtoken";
 
-export function requireSecret(req, res, next) {
+export default function requireSecret(req, res, next) {
   try {
     const token = req.cookies?.secret_unlock;
     if (!token) return res.status(401).json({ error: "No autorizado" });
