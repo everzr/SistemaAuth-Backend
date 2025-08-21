@@ -13,11 +13,11 @@ const Usuario = sequelize.define("Usuario", {
   },
   face_descriptor: {
     type: DataTypes.TEXT('long'),
-    allowNull: false,
+    allowNull: true,
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: true, //De momento estará true para que se pueda registrar rostro, despues hay que cambiar la logica para registrar rostro
+    allowNull: false, //De momento estará true para que se pueda registrar rostro, despues hay que cambiar la logica para registrar rostro
   },
 },
 {tableName: "usuario" ,

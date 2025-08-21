@@ -2,6 +2,7 @@ import Usuario from "../models/Usuario.js";
 import { conectarDB } from "../config/database.js";
 import jwt from "jsonwebtoken";
 import { signUserJwt } from "../utils/jwt.js";
+import bcrypt from "bcrypt"; // <- importar bcrypt
 
 import { euclideanDistance } from "../utils/euclideanDistance.js"; // Lo crearemos abajo
 
@@ -143,15 +144,15 @@ export const loginNormal = async (req, res) => {
       return res.status(400).json({ error: "Usuario no encontrado" });
     }
 
-    /*const esPasswordCorrecta = await bcrypt.compare(password, usuario.password);
+    const esPasswordCorrecta = await bcrypt.compare(password, usuario.password);
     if (!esPasswordCorrecta) {
       return res.status(400).json({ error: "Contraseña incorrecta" });
     }
-      */
-     //Para probar contraseña sin escriptar
+      
+     /*/Para probar contraseña sin escriptar
      if(password !== usuario.password){
       return res.status(400).json({ error: "Contraseña incorrecta" });
-    }
+    }*/
 
     // Generar JWT
     const token = jwt.sign(

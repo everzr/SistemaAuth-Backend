@@ -52,6 +52,7 @@ import proofRoutes from "./routes/proofRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 import authRouter from "./routes/auth.js";
 import secretRouter from "./routes/secret.js";
+import registerRoutes from "./routes/registerRoutes.js"
 
 /* =========================
    Salud
@@ -65,6 +66,7 @@ app.get("/", (_req, res) => {
 ========================= */
 app.use("/api/proof", proofRoutes);
 app.use("/api/login", loginRoutes);
+app.use("/api/register", registerRoutes);
 
 /* =========================
    OAuth
