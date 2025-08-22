@@ -1,17 +1,17 @@
 // backend/middlewares/requireSecret.js
-import jwt from "jsonwebtoken";
+import { normalize } from "../utils/normalize.js";
 
 export default function requireSecret(req, res, next) {
-  try {
-    const token = req.cookies?.secret_unlock;
-    if (!token) return res.status(401).json({ error: "No autorizado" });
-
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    if (!payload?.secret)
-      return res.status(401).json({ error: "No autorizado" });
-
-    next();
-  } catch {
-    return res.status(401).json({ error: "Token inválido/expirado" });
+  const provided = (req.body?.pin ?? req.body?.key ?? "").toString();
+  const envSecret = (
+    process.env.SECRET_PIN ??
+    process.env.SECRET_KEY ??
+    ""
+  ).toString();
+  if (normalize(provided) !== normalize(envSecret)) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Clave incorrecta" });
   }
+  next();
 }
